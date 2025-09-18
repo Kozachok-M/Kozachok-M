@@ -1,0 +1,33 @@
+Задача 1 (вывести количество элементов в стеке)
+import java.util.Stack;  // Импортируем класс Stack для работы со стеком
+
+public class Main {
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();  // Создаем пустой стек для целых чисел
+
+        stack.push(5);    // Добавляем число 5 в стек
+        stack.push(10);   // Добавляем число 10 в стек
+        stack.push(15);   // Добавляем число 15 в стек
+
+        // Выводим количество элементов в стеке (ожидается 3)
+        System.out.println(stack.size());
+    }
+}
+
+
+Задача 2 (вывести числа из стека в обратном порядке)
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();  // Создаем пустой стек целых чисел
+        stack.push(10);                        // Добавляем число 10 в стек
+        stack.push(20);                        // Добавляем число 20 в стек
+        stack.push(30);                        // Добавляем число 30 в стек
+
+        // Пока стек не пуст, выводим верхний элемент и удаляем его
+        while (!stack.isEmpty()) {
+            System.out.println(stack.pop());  // pop() удаляет и возвращает верхний элемент стека
+        }
+    }
+}
