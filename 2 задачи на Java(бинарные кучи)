@@ -1,0 +1,38 @@
+Задача 1 (10, 5, 8, 3, 7, 1 найти три наименьших числа с помощью минимальной кучи)
+
+import java.util.PriorityQueue;
+
+public class Main {
+    public static void main(String[] args) {
+        PriorityQueue<Integer> heap = new PriorityQueue<>();  //  Создаем min-heap
+        for(int x : new int[]{10, 5, 8, 3, 7, 1}) heap.add(x); //  Добавляем числа
+        for(int i = 0; i < 3; i++)                            //  Повторяем 3 раза:
+            System.out.print(heap.poll() + " ");              //  Извлекаем минимум
+    }
+}
+
+Результат: 1 3 5
+
+Задача 2 (найти самое маленькое число)
+
+import java.util.PriorityQueue;
+
+public class Main {
+    public static void main(String[] args) {
+        PriorityQueue<Integer> q = new PriorityQueue<>();  //  Создаем коробку для маленьких чисел
+        q.add(5); q.add(2); q.add(8);                     //  Бросаем числа 5, 2, 8
+        System.out.println("Самое маленькое: " + q.peek());//  Смотрим что сверху
+    }
+}
+
+Результат: Самое маленькое 2
+
+Обьяснение кода:
+1. PriorityQueue<Integer> q = new PriorityQueue<>(); - Берем специальную коробку, которая сама раскладывает числа по порядку
+2. q.add(5); q.add(2); q.add(8); - Кидаем числа в коробку как попало
+3. System.out.println("Самое маленькое: " + q.peek()); - Открываем коробку и смотрим на верхнее число
+
+
+
+
+
