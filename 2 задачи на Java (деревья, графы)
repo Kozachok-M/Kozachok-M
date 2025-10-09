@@ -1,0 +1,55 @@
+Задача 1 (Напишите функцию, которая вычисляет глубину бинарного дерева.)
+public class TreeDepth {
+    public static void main(String[] args) {
+        // Создаем дерево: [1, 2, 3, 4]
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        
+        int result = depth(root); // Вызываем функцию глубины
+        System.out.println("Глубина дерева: " + result); // Выводим результат
+    }
+    
+    static int depth(Node root) {
+        if (root == null) return 0;           // Если узел пустой - глубина 0
+        int left = depth(root.left);          // Рекурсивно получаем глубину левого поддерева
+        int right = depth(root.right);        // Рекурсивно получаем глубину правого поддерева
+        return 1 + Math.max(left, right);     // Возвращаем 1 + максимальную глубину из поддеревьев
+    }
+    
+    static class Node {
+        int val; Node left, right;
+        Node(int val) { this.val = val; }
+    }
+}
+
+вывод: 
+Глубина дерева: 3
+
+Задача 2 (проверить существует ли путь между вершинами)
+import java.util.*;
+
+public class GraphPath {
+    public static void main(String[] args) {
+        // Создаем граф: 1 → 2 → 3
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        graph.put(1, Arrays.asList(2));
+        graph.put(2, Arrays.asList(3));
+        
+        boolean pathExists = hasPath(graph, 1, 3); // Проверяем путь от 1 до 3
+        System.out.println("Путь от 1 до 3 существует: " + pathExists);
+    }
+    
+    static boolean hasPath(Map<Integer, List<Integer>> graph, int start, int end) {
+        if (start == end) return true;                    // Если дошли до цели - путь найден
+        if (!graph.containsKey(start)) return false;      // Если вершины нет в графе - пути нет
+        
+        for (int neighbor : graph.get(start)) {           // Перебираем всех соседей текущей вершины
+            if (hasPath(graph, neighbor, end)) return true; // Рекурсивно ищем путь от соседа к цели
+        }
+        return false; // Если ни один сосед не ведет к цели - путь не существует
+    }
+}
+вывод:
+Путь от 1 до 3 существует: true
