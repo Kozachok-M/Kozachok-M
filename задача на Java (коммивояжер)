@@ -1,0 +1,43 @@
+Коммивояжер должен посетить 4 города и вернуться в исходный. Расстояния между городами заданы матрицей. Найти минимальный маршрут полным перебором.
+
+import java.util.*;
+
+public class TSP {
+    public static void main(String[] args) {
+        int[][] dist = {{0,10,15,20}, {10,0,35,25}, {15,35,0,30}, {20,25,30,0}}; // Матрица расстояний
+        int[] route = {0,1,2,3}; // Начальный маршрут
+        int minDist = 1000; // Инициализация большого значения
+        
+        do {
+            int currentDist = dist[route[3]][route[0]]; // Расстояние обратно в стартовый город
+            for(int i = 0; i < 3; i++) currentDist += dist[route[i]][route[i+1]]; // Сумма пути
+            if(currentDist < minDist) minDist = currentDist; // Обновление минимума
+        } while(nextPermutation(route)); // Перебор перестановок
+        
+        System.out.println("Минимальное расстояние: " + minDist); // Вывод результата
+    }
+    
+    // Вспомогательный метод для генерации перестановок
+    public static boolean nextPermutation(int[] array) {
+        int i = array.length - 2;
+        while (i >= 0 && array[i] >= array[i + 1]) i--;
+        if (i < 0) return false;
+        int j = array.length - 1;
+        while (array[j] <= array[i]) j--;
+        int temp = array[i]; array[i] = array[j]; array[j] = temp;
+        for(int k = i + 1, l = array.length - 1; k < l; k++, l--) {
+            temp = array[k]; array[k] = array[l]; array[l] = temp;
+        }
+        return true;
+    }
+}
+
+вывод: Минимальное расстояние: 80
+
+Объяснение работы:
+- Матрица расстояний - хранит расстояния между всеми парами городов
+- Массив route - представляет текущий маршрут обхода
+- Перебор перестановок - проверяем все возможные порядки посещения городов
+- Вычисление длины - для каждого маршрута считаем общее расстояние
+- Поиск минимума - сохраняем наименьшее найденное расстояние
+Минимальное расстояние для данной матрицы будет 80 (маршрут 0→1→3→2→0: 10+25+30+15=80).
