@@ -1,0 +1,58 @@
+на python
+
+def ternary_search(arr, target):
+    left = 0
+    right = len(arr) - 1
+    
+    while left <= right:
+        # Делим диапазон на три равные части
+        mid1 = left + (right - left) // 3
+        mid2 = right - (right - left) // 3
+        
+        print(f"Диапазон: [{left}, {right}], mid1={mid1}, mid2={mid2}")
+        
+        # Проверяем граничные точки
+        if arr[mid1] == target:
+            return mid1
+        if arr[mid2] == target:
+            return mid2
+        
+        # Определяем, в какой трети продолжать поиск
+        if target < arr[mid1]:
+            right = mid1 - 1
+        elif target > arr[mid2]:
+            left = mid2 + 1
+        else:
+            left = mid1 + 1
+            right = mid2 - 1
+    
+    return -1
+
+# Тестирование
+if __name__ == "__main__":
+    arr = [2, 5, 8, 12, 16, 23, 38, 45, 67, 89, 91, 95]
+    target = 45
+    
+    print("Массив:", arr)
+    print(f"Ищем элемент: {target}")
+    print()
+    
+    result = ternary_search(arr, target)
+    print()
+    
+    if result != -1:
+        print(f"Элемент найден на позиции {result}")
+        print(f"arr[{result}] = {arr[result]}")
+    else:
+        print("Элемент не найден")
+
+вывод:
+Массив: [2, 5, 8, 12, 16, 23, 38, 45, 67, 89, 91, 95]
+Ищем элемент: 45
+
+Диапазон: [0, 11], mid1=3, mid2=8
+Диапазон: [4, 7], mid1=5, mid2=6
+Диапазон: [7, 7], mid1=7, mid2=7
+
+Элемент найден на позиции 7
+arr[7] = 45
