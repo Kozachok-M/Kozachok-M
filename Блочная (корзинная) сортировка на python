@@ -1,0 +1,36 @@
+на python
+
+def bucket_sort(arr):
+    """
+    Блочная сортировка для чисел в диапазоне [0, 1)
+    """
+    if len(arr) == 0:
+        return arr
+    
+    # 1. Создаем пустые корзины
+    n = len(arr)
+    buckets = [[] for _ in range(n)] # Создание корзин
+    
+    # 2. Распределяем элементы по корзинам
+    for num in arr:
+        bucket_index = int(num * n)  # Для чисел в диапазоне [0, 1) 
+        buckets[bucket_index].append(num)
+    
+    # 3. Сортируем каждую корзину
+    for bucket in buckets:
+        bucket.sort()  # Используем встроенную сортировку
+    
+    # 4. Объединяем корзины
+    sorted_arr = []
+    for bucket in buckets:
+        sorted_arr.extend(bucket)
+    
+    return sorted_arr
+
+# Тестирование
+if __name__ == "__main__":
+    # Пример с числами в диапазоне [0, 1)
+    test_arr = [0.42, 0.32, 0.33, 0.52, 0.37, 0.47, 0.51]
+    print("Исходный массив:", test_arr)
+    sorted_arr = bucket_sort(test_arr)
+    print("Отсортированный массив:", sorted_arr)
