@@ -1,0 +1,22 @@
+на python
+
+def pancake_sort(arr):
+    for i in range(len(arr), 1, -1):
+        # Находим максимум в текущей части
+        max_idx = arr.index(max(arr[:i]))
+        
+        # Переворачиваем до максимума и затем всю часть
+        if max_idx != 0:
+            arr[:max_idx+1] = arr[:max_idx+1][::-1]
+        arr[:i] = arr[:i][::-1]
+    
+    return arr
+
+# Тест
+arr = [23, 10, 20, 11, 12, 6, 7]
+print("До:", arr)
+print("После:", pancake_sort(arr.copy()))
+
+вывод: До: [23, 10, 20, 11, 12, 6, 7]
+       После: [6, 7, 10, 11, 12, 20, 23]
+
